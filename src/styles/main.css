@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+.container{
+    max-width: 1440px;
+    margin: 0 auto;
+}
+body{
+    background-color: black;
+    font-family: 'Inter', sans-serif;
+}
+li{
+    list-style-type: none;
+}
+a{
+    color: unset;
+    text-decoration: none;
+}

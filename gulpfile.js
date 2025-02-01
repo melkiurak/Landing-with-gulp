@@ -5,7 +5,9 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass'; 
 const sass = gulpSass(dartSass); 
 import webp from 'gulp-webp';
-import debug from 'gulp-debug';
+import imagemin from 'gulp-imagemin';
+import browserSync, { watch } from 'browser-sync';
+
 
 const paths = {
     dist: './dist',
@@ -16,7 +18,7 @@ const paths = {
     img: './src/img',
 }
 
-gulp.task('html', function(){
+gulp.task('html', () =>{
     return gulp.src(paths.src +'/*.html')
         .pipe(fileinclude({
             prefix: '@@',
@@ -25,26 +27,34 @@ gulp.task('html', function(){
         .pipe(gulp.dest(paths.dist))
 });
 
-gulp.task('styles', function(){
+gulp.task('styles', () =>{
     return gulp.src(paths.styles + '/*.scss')
         .pipe(sass())
         .pipe(gulp.dest(paths.dist + '/css' ))
 });
 
-gulp.task('img', function () {
-    return gulp.src(paths.img + '/*.{jpg,png,svg}')
-      .pipe(debug({ title: 'Исходные изображения:' }))
-      .pipe(webp({ quality: 100 }))
-      .pipe(debug({ title: 'WebP изображения:' }))
-      .pipe(gulp.dest(paths.dist + '/img'))
-      .pipe(debug({ title: 'Конечные изображения:' }));
-  });
+gulp.task('img', () => {
+    return  gulp.src('./src/img/**/*.*', {encoding: false})
+        .pipe(webp())
+        .pipe(imagemin())
+        .pipe(gulp.dest(paths.dist + '/img'))
+});
 
-gulp.task('clean', async function(){
+gulp.task('scripts', () => {
+    return gulp.src(paths.scripts + '/*.js')
+    .pipe(gulp.dest(paths.dist + '/js'))
+})
+
+gulp.task('clean', async () =>{
     return await deleteAsync(paths.dist);
 });
 
-gulp.task('replace-styles-path', function(){
+gulp.task('replace-styles-path', () =>{
     return gulp.src('dist/**/*.html')
 });
-gulp.task('build', gulp.series('clean', gulp.parallel( 'img')));
+gulp.task('watch', () => {
+    gulp.watch('./src/**/*.html', gulp.series('html'))
+    gulp.watch('./src/**/*.scss', gulp.series('styles'))
+    gulp.watch('./src/img/**/*.*', gulp.series('img'))
+})
+gulp.task('build', gulp.series('clean', gulp.parallel('html','styles','img', 'scripts', 'watch')));

@@ -14,3 +14,123 @@ a{
     color: unset;
     text-decoration: none;
 }
+h1,h2,h3,h4,h5,h6,ul{
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    &-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 570px;
+        background-image: url('../img/main/CarBackground.webp');
+        color: #FFFFFF;
+        &__container{
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            max-width: 1299px;
+            margin: 0 auto;
+            h2{
+                font-weight: 400;
+                font-size: 43px;
+            }
+        }
+    }
+}
+.content {
+    display: flex;
+    gap: 70px;
+    justify-content: space-between;
+}
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+    padding:7px 0 0 0  ;
+    h3{
+        font-weight: 400;
+        font-size: 28px;
+    }
+}
+.feature-item {
+    display: flex;
+    gap: 19px ;
+    span{
+        font-size: 20px;
+    }
+}
+
+.order-section {
+    background-color: #47752480 ;
+    border-radius: 20px;
+    width: 532px;
+    height: 300px;
+    padding: 15px 0;
+    h4{
+        font-size: 20px;
+        font-weight: 400;
+
+    }
+    &__container{
+        max-width: 484px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+    }
+}
+.input-fields {
+    display: flex;
+    gap: 40px;
+}
+.input-wrapper {
+    position: relative;
+    width:206px;
+  }
+.input {
+    width: 100%;
+    height: 24px;
+    padding: 4px 9px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: none;
+    font-size: 14px;
+}
+.input-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none; 
+  }
+.category-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.category-list {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px 39px;
+
+}
+.category-item {
+    display: flex;
+    gap: 9px;
+}
+.submit-button {
+    width: 92%;
+    height: 46px;
+    background-color: #477524CC;
+    border:1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 20px;
+    margin: 0 auto;
+    cursor: pointer;
+}
